@@ -11,6 +11,7 @@ function Header(){
 
                     {/* navigation items */}
                     <ul className=" flex justify-evenly  items-center w-[75%] text-[1.2rem] font-semibold  " >
+                        
                         {/* search comp inside nav only for desktop view */}
                         <li className=" w-[40%] hidden lg:flex " >Search</li>
                         <li className="navItems" >Home</li>
