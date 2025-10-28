@@ -3,13 +3,17 @@
 
 /* navigation li */
 .navItems{
-    padding: 4px 6px;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    padding: 8px 8px;
     /* background-color: #fb8824; */
     text-align: center;
     transition: background-color 0.3s, transform 0.3s;
     border-radius: 8px;
     font-weight: 700;
     color: #EA580C;
+    gap:2px;
 }
 
 .navItems:hover {
@@ -19,5 +23,5 @@
     border-width: 2px;
     border-style: solid;
 
-  transform: scale(0.95);
+  /* transform: scale(0.95); */
 }
