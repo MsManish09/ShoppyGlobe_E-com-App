@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+
+/* navigation li */
+.navItems{
+    padding: 4px 6px;
+    /* background-color: #fb8824; */
+    text-align: center;
+    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 8px;
+    font-weight: 700;
+    color: #EA580C;
+}
+
+.navItems:hover {
+    background-color: #1D4ED8;
+    color:white;
+    border-color: #c2cddc;
+    border-width: 2px;
+    border-style: solid;
+
+  transform: scale(0.95);
+}
