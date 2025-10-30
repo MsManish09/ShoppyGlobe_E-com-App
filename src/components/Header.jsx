@@ -7,27 +7,14 @@ import { AiFillProduct } from "react-icons/ai";
 // import components
 import Search from "./Search";
 
-// import axiox
-import axios from "axios";
+
 
 
 function Header(){
 
-    const productAPI = 'https://dummyjson.com/products'
-
-    axios.get(productAPI)
-    .then(response=>{
-        console.log(response)
-    })
-    .catch(error => {
-        console.log(error)
-    })
-
-
-
     return(
         <div >
-            <header className=" w-screen h-[15vh] lg:h-[12vh] bg-blue-50 sticky " >
+            <header className=" w-screen h-[15vh] lg:h-[12vh] bg-gradient-to-r from-orange-400 to-blue-400 sticky " >
 
                 <nav className=" flex flex-col lg:flex-row md:flex-row justify-center lg:justify-evenly items-center h-full gap-4 " >
 
