@@ -9,6 +9,7 @@ function App(){
   const productAPI = 'https://dummyjson.com/products'
   let  product = []
   let category = []
+  let uniqueCategory = []
 
     axios.get(productAPI)
     .then(response=>{
@@ -20,7 +21,7 @@ function App(){
       category = product.map((p)=> p.category)
       
       // get unique categories
-      const uniqueCategory = []
+      
       category.forEach(c => {
         if(!uniqueCategory.includes(c)){
           uniqueCategory.push(c)
@@ -36,8 +37,8 @@ function App(){
 
   return(
     <div>
-      <Header />
-      <Homebody />
+      <Header classname=' sticky top-0 ' />
+      <Homebody uniqueCategory={uniqueCategory} />
     </div>
   )
 }

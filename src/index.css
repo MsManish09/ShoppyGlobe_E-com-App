@@ -25,3 +25,8 @@
 
   /* transform: scale(0.95); */
 }
+
+/* hide scroll bar for categories dispaly */
+#categoriesDisplay::-webkit-scrollbar {
+  display: none;
+}
