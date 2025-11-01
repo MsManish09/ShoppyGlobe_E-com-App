@@ -31,8 +31,7 @@ function Hero() {
 
   return (
     
-      <div
-        className=" flex transition-transform duration-1000 ease-in-out gap-6 "
+      <div className=" flex transition-transform duration-1000 ease-in-out gap-6 "
         style={{ transform: `translateX(-${currentIndex * 100}%)`, width: `${banners.length * 100}%` }}> {/* to make sure that there is enough widht for all banners w = 3 * 100 -> 300%  */}
 
         {
