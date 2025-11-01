@@ -1,7 +1,6 @@
 import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header"
 import Homebody from "./components/HomeBody"
-import ProductsPage from "./components/ProductsPage";
 
 
 // import axiox
@@ -9,22 +8,25 @@ import axios from "axios";
 
 // import react routes
 import { Routes, Route } from "react-router-dom";
+import SearchProduct from "./components/SearchProduct";
+import { useEffect, useState } from "react";
 
 
 function App(){
 
   const productAPI = 'https://dummyjson.com/products'
-  let  product = []
+  const  [product, setProduct] = useState([])
   let category = []
   let uniqueCategory = []
 
+  useEffect(()=>{
+    
     axios.get(productAPI)
     .then(response=>{
+      // console.log(response)
 
-      console.log(response)
-
-      product = response.data.products
-      console.log(product)
+      setProduct(response.data.products) 
+      console.log('product',product)
       category = product.map((p)=> p.category)
       
       // get unique categories
@@ -41,6 +43,8 @@ function App(){
     .catch(error => {
         console.log(error)
     })
+  },[])
+    
 
   return(
     <div className=" flex flex-col justify-center items-center max-w-screen " >
@@ -48,7 +52,7 @@ function App(){
       <Routes>
         <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
         <Route path='*' element= {<ErrorPage  />} />
-        <Route path='/products' element = {<ProductsPage uniqueCategory={uniqueCategory} /> } />
+        <Route path='/product/:name' element={ <SearchProduct product={product} /> } />
       </Routes>
       
     </div>

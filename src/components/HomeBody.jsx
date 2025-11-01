@@ -11,7 +11,7 @@ function Homebody({uniqueCategory}){
     console.log('categories: ', uniqueCategory)
 
     return(
-        <main className=" flex flex-col justify-center items-center gap-4 p-4 max-w-[95%] bg-blue-100 rounded-[10px]  shadow-2xl mt-6  " >
+        <main className=" flex flex-col justify-center items-center gap-4 p-4 max-w-[95%] bg-blue-100 rounded-[10px]  shadow-2xl mt-6 mb-8 " >
 
             {/* only for mobile screen */}
             <div className=" flex justify-center items-center lg:hidden md:hidden w-full " >
