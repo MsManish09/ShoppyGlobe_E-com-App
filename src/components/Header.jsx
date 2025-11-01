@@ -36,7 +36,7 @@ function Header(){
 
                         <li className="navItems" >
                             <AiFillProduct />
-                            Products
+                            Profile
                         </li>
                         <li className="navItems" >
                             <CiShoppingCart />

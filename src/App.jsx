@@ -1,6 +1,8 @@
 import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header"
 import Homebody from "./components/HomeBody"
+import ProductsPage from "./components/ProductsPage";
+
 
 // import axiox
 import axios from "axios";
@@ -41,11 +43,12 @@ function App(){
     })
 
   return(
-    <div>
+    <div className=" flex flex-col justify-center items-center max-w-screen " >
       <Header classname=' sticky top-0 ' />
       <Routes>
         <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
         <Route path='*' element= {<ErrorPage  />} />
+        <Route path='/products' element = {<ProductsPage uniqueCategory={uniqueCategory} /> } />
       </Routes>
       
     </div>
