@@ -1,8 +1,13 @@
+import ErrorPage from "./components/ErrorPage";
 import Header from "./components/Header"
 import Homebody from "./components/HomeBody"
 
 // import axiox
 import axios from "axios";
+
+// import react routes
+import { Routes, Route } from "react-router-dom";
+
 
 function App(){
 
@@ -38,7 +43,11 @@ function App(){
   return(
     <div>
       <Header classname=' sticky top-0 ' />
-      <Homebody uniqueCategory={uniqueCategory} />
+      <Routes>
+        <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
+        <Route path='*' element= {<ErrorPage  />} />
+      </Routes>
+      
     </div>
   )
 }
