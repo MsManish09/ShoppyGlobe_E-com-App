@@ -30,7 +30,7 @@ function Homebody({uniqueCategory}){
             {/* hero section  */}
                 {/* categories */}
                 <div id='categoriesDisplay' className=" flex items-center w-full max-w-[100%] gap-4 overflow-x-scroll pl-4 pr-4  " >
-                    {uniqueCategory.map((c) => { return <Categories c={c} /> })}
+                    {uniqueCategory.map((c, index) => { return <Categories c={c} key={index} /> })}
                 </div>
 
                 {/* Hero banner */}

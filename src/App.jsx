@@ -16,35 +16,41 @@ function App(){
 
   const productAPI = 'https://dummyjson.com/products'
   const  [product, setProduct] = useState([])
-  let category = []
-  let uniqueCategory = []
+  const [uniqueCategory,  setUniqueCategory] = useState([])
 
-  useEffect(()=>{
+
+  // use useEffect to fetch api data
+   useEffect( ()=>{
     
-    axios.get(productAPI)
-    .then(response=>{
-      // console.log(response)
+    axios.get( productAPI )
+    .then(response => {
+      console.log(response)
 
-      setProduct(response.data.products) 
-      console.log('product',product)
-      category = product.map((p)=> p.category)
-      
-      // get unique categories
-      
-      category.forEach(c => {
-        if(!uniqueCategory.includes(c)){
-          uniqueCategory.push(c)
-        }
-      });
+      // extact products
+      const products = response.data.products
+      setProduct(products) // extract products dtails from api data 
 
-      console.log(uniqueCategory)
-      
+
+      // get all the unique categories
+      const unique = [...new Set(products.map((p) => p.category))];
+      setUniqueCategory(unique);
+
     })
+    // is api fetch fails
     .catch(error => {
-        console.log(error)
+      console.log('error fetching api data', error)
     })
-  },[])
-    
+
+   }, [])
+
+   // to see the updated product and categories
+   useEffect(()=>{
+  
+    console.log('Products: ',product)
+    console.log('Unique Categoreies: ',uniqueCategory)
+
+   }, [product, uniqueCategory])
+
 
   return(
     <div className=" flex flex-col justify-center items-center max-w-screen " >
