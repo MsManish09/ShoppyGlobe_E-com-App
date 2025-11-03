@@ -1,6 +1,7 @@
 
 import { useParams } from "react-router-dom"
 import ProductCard from "./ProductCard"
+import Search from "./Search"
 
 function SearchProduct({product}){
 
@@ -9,7 +10,7 @@ function SearchProduct({product}){
     console.log(name)
 
     const searchMatchProduct = product.filter((p)=>{
-        return p.title.toLowerCase().includes(name.toLowerCase())
+        return p.title.toLowerCase().includes(name.toLowerCase()) || p.category.toLowerCase().includes(name.toLowerCase())
     } )
 
     console.log('search product: ',searchMatchProduct)
@@ -24,7 +25,13 @@ function SearchProduct({product}){
     }
 
     return(
-        <div className=" m-4 flex flex-wrap gap-5 justify-start items-start w-[95%]  " >
+        <div className=" m-4 mt-10 flex flex-wrap gap-5 justify-center items-start w-[95%] " >
+
+            {/* search compoonent for mobile screen only */}
+            <div className=' lg:hidden md:hidden ' >
+                <Search  />
+            </div>
+
             { searchMatchProduct.map((p)=> <ProductCard product={p} key={p.title} />) }
         </div>
     )
