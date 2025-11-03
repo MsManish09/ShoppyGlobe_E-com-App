@@ -10,6 +10,7 @@ import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import SearchProduct from "./components/SearchProduct";
 import { useEffect, useState } from "react";
+import ProductDetails from "./components/ProductDetails";
 
 
 function App(){
@@ -59,6 +60,7 @@ function App(){
         <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
         <Route path='*' element= {<ErrorPage  />} />
         <Route path='/product/:name' element={ <SearchProduct product={product} /> } />
+        <Route path='/product_details/:id' element= {<ProductDetails />} />
       </Routes>
       
     </div>
