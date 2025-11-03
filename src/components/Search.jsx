@@ -11,6 +11,11 @@ function Search(){
     }
 
     function handleSearch(){
+        // if search button is clicked with empty input field, dont navigate to search product page.
+        if(searchProduct.length == 0){
+            alert('Search query is empty...')
+            return
+        }
         navigate(`/product/${searchProduct}`)
     }
 

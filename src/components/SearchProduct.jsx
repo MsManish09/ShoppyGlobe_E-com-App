@@ -25,7 +25,7 @@ function SearchProduct({product}){
     }
 
     return(
-        <div className=" m-4 mt-10 flex flex-wrap gap-5 justify-center items-start w-[95%] " >
+        <div className=" m-4 mt-10 flex flex-wrap gap-8 justify-center items-start w-[95%] mb-10 " >
 
             {/* search compoonent for mobile screen only */}
             <div className=' lg:hidden md:hidden ' >
