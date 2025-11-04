@@ -60,7 +60,7 @@ function App(){
         <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
         <Route path='*' element= {<ErrorPage  />} />
         <Route path='/product/:name' element={ <SearchProduct product={product} /> } />
-        <Route path='/product_details/:id' element= {<ProductDetails />} />
+        <Route path='/product_details/:id' element= {<ProductDetails product={product} />} />
       </Routes>
       
     </div>
