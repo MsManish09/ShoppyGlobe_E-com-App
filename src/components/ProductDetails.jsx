@@ -1,5 +1,8 @@
 import { useParams } from "react-router-dom"
 
+import { FaCartPlus } from "react-icons/fa6";
+
+
 function ProductDetails({product}){
 
     let {id} = useParams()
@@ -69,16 +72,18 @@ function ProductDetails({product}){
                         {
                             Object.entries(currentProduct.dimensions).map(([key, value]) => (
                                 <h3 key={key}>
-                                    {key}: <span className=" font-medium " >{value}</span>
+                                    {key}: <span className=" font-medium " >{value}mm</span>
                                 </h3>))
                         }
                     </div>
 
                     {/* add to cart button */}
-                    <button className=" mt-4 p-2 bg-orange-500 text-2xl text-white font-semibold rounded-[10px] hover:scale-95 hover:bg-blue-700 " >Add to Cart</button>
+                    <button className=" flex justify-center items-center gap-2 mt-4 p-2 bg-orange-500 border-3 border-solid border-orange-200 text-2xl text-white font-semibold rounded-[10px] hover:scale-95 hover:bg-blue-700 hover:border-blue-300 shadow-2xl " >
+                        <FaCartPlus />
+                        <span>Add to Cart</span>
+                    </button>
 
                 </div>
-
             </section>
 
             {/* related products */}
