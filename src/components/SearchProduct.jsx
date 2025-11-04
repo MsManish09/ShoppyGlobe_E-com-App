@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import ProductCard from "./ProductCard"
 import Search from "./Search"
 
-function SearchProduct({product}){
+function SearchProduct({product, cart, setCart}){
 
     const {name} =  useParams()
     console.log('search products page...')
@@ -32,7 +32,7 @@ function SearchProduct({product}){
                 <Search  />
             </div>
 
-            { searchMatchProduct.map((p)=> <ProductCard product={p} key={p.title} />) }
+            { searchMatchProduct.map((p)=> <ProductCard product={p} cart={cart} setCart={setCart} key={p.title} />) }
         </div>
     )
 }

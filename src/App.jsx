@@ -18,6 +18,7 @@ function App(){
   const productAPI = 'https://dummyjson.com/products'
   const  [product, setProduct] = useState([])
   const [uniqueCategory,  setUniqueCategory] = useState([])
+  const [cart, setCart] = useState([])
 
 
   // use useEffect to fetch api data
@@ -59,8 +60,8 @@ function App(){
       <Routes>
         <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
         <Route path='*' element= {<ErrorPage  />} />
-        <Route path='/product/:name' element={ <SearchProduct product={product} /> } />
-        <Route path='/product_details/:id' element= {<ProductDetails product={product} />} />
+        <Route path='/product/:name' element={ <SearchProduct product={product} cart={cart} setCart={setCart} /> } />
+        <Route path='/product_details/:id' element= {<ProductDetails product={product} cart={cart} setCart={setCart}/>} />
       </Routes>
       
     </div>

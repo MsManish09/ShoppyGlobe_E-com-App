@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom"
 
 import { FaCartPlus } from "react-icons/fa6";
+import { useEffect } from "react";
 
 
-function ProductDetails({product}){
+function ProductDetails({product,cart, setCart}){
 
     let {id} = useParams()
     // console.log(id)
@@ -14,6 +15,17 @@ function ProductDetails({product}){
 
     const currentProduct = product.find((p)=>p.id == id)
     console.log(currentProduct)
+
+
+    // add to cart functionlality
+    function HandleClick(e){
+        setCart((prev) => [...prev, currentProduct]);
+        // console.log('items in cart', cart)
+    }
+
+    useEffect(() => {
+        console.log("Updated cart:", cart);
+    }, [cart]);
 
     return(
         <div className=" flex flex-col justify-center items-center p-4 m-6 bg-gray-100 rounded-[10px] shadow-2xl w-[95%] lg:w-[80vw] md:w-[90vw] flex-wrap " >
@@ -78,7 +90,7 @@ function ProductDetails({product}){
                     </div>
 
                     {/* add to cart button */}
-                    <button className=" flex justify-center items-center gap-2 mt-4 p-2 bg-orange-500 border-3 border-solid border-orange-200 text-2xl text-white font-semibold rounded-[10px] hover:scale-95 hover:bg-blue-700 hover:border-blue-300 shadow-2xl " >
+                    <button className=" flex justify-center items-center gap-2 mt-4 p-2 bg-orange-500 border-3 border-solid border-orange-200 text-2xl text-white font-semibold rounded-[10px] hover:scale-95 hover:bg-blue-700 hover:border-blue-300 shadow-2xl " onClick={HandleClick} >
                         <FaCartPlus />
                         <span>Add to Cart</span>
                     </button>
