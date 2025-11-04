@@ -99,10 +99,36 @@ function ProductDetails({product,cart, setCart}){
                 </div>
             </section>
 
-            {/* related products */}
-            <section></section>
-
             {/* Reviews */}
+            <section className=" flex flex-col gap-4 border-t-2 border-solid border-gray-300 w-full mt-4 p-4 " >
+                
+                <h2 className=" text-2xl font-semibold underline text-blue-900 " >Ratings & Reviews </h2>
+
+                {/* user reviews */}
+                {currentProduct.reviews.map((r)=>{
+                    return(
+                        <div className=" p-2 bg-gray-200 rounded-[10px] border-2 border-solid border-gray-400 shadow-2xl flex justify-between items-center " >
+                            {/* review and rating */}
+                            <div className=" flex w-[80%] h-fit justify-center items-center   " >
+                                <div className=" flex justify-center items-center w-[20%] text-[1.2rem] h-full font-semibold  p-2 " >
+                                    <h2>{r.rating}⭐</h2>
+                                </div>
+                                <div className=" flex justify-start items-center w-[80%] h-full text-[1.2rem] font-medium border-l-2 border-solid border-gray-300 p-2  " >
+                                    <h3> {r.comment} </h3>
+                                </div>
+                            </div>
+                            {/* reviewer and time */}
+                            <div className=" flex flex-col justify-start items-start gap-1 p-4  " >
+                                <h2 className=" text-2xl font-semibold text-orange-600 " >{r.reviewerName}</h2>
+                                <p className="italic text-[.8rem] text-blue-900 font-medium " > {r.date} </p>
+                            </div>
+                        </div>
+                    )
+                })}
+
+            </section>
+
+            {/* related products */}
             <section></section>
         </div>
     )
