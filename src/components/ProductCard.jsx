@@ -9,6 +9,7 @@ function ProductCard({product, cart, setCart}){
             
             setCart((prev) => [...prev, product]);
             // console.log('items in cart', cart)
+            alert('item added to your cart...')
         }
     
         useEffect(() => {

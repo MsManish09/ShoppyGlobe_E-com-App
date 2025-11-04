@@ -21,6 +21,7 @@ function ProductDetails({product,cart, setCart}){
     function HandleClick(e){
         setCart((prev) => [...prev, currentProduct]);
         // console.log('items in cart', cart)
+        alert('item added to your cart...')
     }
 
     useEffect(() => {
@@ -51,7 +52,7 @@ function ProductDetails({product,cart, setCart}){
                         {/*original price  */}
                         <span className=" text-blue-900 line-through text-[1.2rem] flex justify-center items-center " > ₹{Math.floor(currentProduct.price * 90 / (1 - (currentProduct.discountPercentage / 100)))}</span>
 
-                        <span className=" bg-orange-500 pl-2 pr-2 text-white font-semibold " >  {currentProduct.discountPercentage}% OFF </span>
+                        <span className=" bg-orange-500 pl-2 pr-2 text-white font-semibold shadow-2xl " >  {currentProduct.discountPercentage}% OFF </span>
                     </h2>
 
                     {/* description of the product */}
