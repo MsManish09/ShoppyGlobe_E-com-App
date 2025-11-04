@@ -6,6 +6,7 @@ import { AiFillProduct } from "react-icons/ai";
 
 // import components
 import Search from "./Search";
+import { Link } from "react-router-dom";
 
 
 
@@ -19,7 +20,9 @@ function Header(){
                 <nav className=" flex flex-col lg:flex-row md:flex-row justify-center lg:justify-evenly items-center h-full gap-4 " >
 
                     {/* site logo */}
-                    <img src="src/utils/shoppyGlobe_logo.png" alt="" className=" w-[20%] h-[40%] lg:h-[80%] hover:scale-95 " />
+                    <Link to='/'  className=" flex justify-center items-center w-[20%] h-[40%] lg:h-[75%] " >
+                        <img src="src/utils/shoppyGlobe_logo.png" alt="" className="  hover:scale-95 " />
+                    </Link>
 
                     {/* navigation items */}
                     <ul className=" flex justify-evenly  items-center w-[75%] text-[1.2rem] font-semibold gap-4  " >
@@ -29,15 +32,18 @@ function Header(){
                             <Search />
                         </li>
 
-                        <li className="navItems" >
+                        <li  >
+                            <Link to='/' className="navItems">
                             <FaHome />
                             Home
+                            </Link>
                         </li>
 
                         <li className="navItems" >
                             <AiFillProduct />
                             Profile
                         </li>
+                        
                         <li className="navItems" >
                             <CiShoppingCart />
                             Cart

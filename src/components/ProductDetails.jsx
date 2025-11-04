@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 
 import { IoIosStar } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
@@ -48,7 +48,7 @@ function ProductDetails({product,cart, setCart}){
                 {/* details */}
                 <div className=" w-full lg:w-[50%] md:w-[50%] p-4 flex flex-col gap-2   " >
                     <h1 className=" text-2xl font-semibold text-blue-900 " >{currentProduct.title}</h1>
-                    <p className="  text-orange-400 text-[.8rem] " > <span>{currentProduct.category}</span>, by     <span className="font-semibold underline " >{currentProduct.brand }</span> 
+                    <p className="  text-orange-400 text-[.8rem] " > <Link to={`/category/${currentProduct.category}`} > <span className=" hover:scale-105 hover:font-medium hover:text-blue-600 hover:underline " >{currentProduct.category}</span></Link>, by     <span className="font-semibold underline " >{currentProduct.brand }</span> 
                         <span className=" ml-1 " > {currentProduct.rating}⭐</span>
                     </p>
                     {/* price and disc */}
@@ -140,10 +140,11 @@ function ProductDetails({product,cart, setCart}){
                 <h2 className=" text-2xl font-semibold  bg-orange-500 text-white w-fit p-2 rounded-[5px] " >Similar Products</h2>
 
                 {/* by category */}
-                <div id='similarProductsCont' className=" max-w-[100%] min-w-[100%] p-2  mt-4 pb-6  flex overflow-x-scroll gap-4 " >
-                    {
-                       similarProducts.map((p)=> <ProductCard product={p} cart = {cart} setCart={setCart}/> ) 
-                    }
+                <div  className=" max-w-[100%] min-w-[100%] p-2  mt-4 pb-6  flex gap-5 flex-wrap  " >
+                        {
+                        similarProducts.map((p)=> <ProductCard product={p} cart = {cart} setCart={setCart}/> ) 
+                        }
+                    
                 </div>
             </section>
         </div>

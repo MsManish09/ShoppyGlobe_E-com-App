@@ -11,6 +11,7 @@ import { Routes, Route } from "react-router-dom";
 import SearchProduct from "./components/SearchProduct";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
+import ProductByCategory from "./components/ProductByCategory";
 
 
 function App(){
@@ -62,6 +63,7 @@ function App(){
         <Route path='*' element= {<ErrorPage  />} />
         <Route path='/product/:name' element={ <SearchProduct product={product} cart={cart} setCart={setCart} /> } />
         <Route path='/product_details/:id' element= {<ProductDetails product={product} cart={cart} setCart={setCart}/>} />
+        <Route path='/category/:category' element= { <ProductByCategory product={product} cart={cart} setCart={setCart} /> } />
       </Routes>
       
     </div>
