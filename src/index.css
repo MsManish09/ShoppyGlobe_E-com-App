@@ -27,6 +27,6 @@
 }
 
 /* hide scroll bar for categories dispaly */
-#categoriesDisplay::-webkit-scrollbar {
+#categoriesDisplay::-webkit-scrollbar, #similarProductsCont::-webkit-scrollbar {
   display: none;
 }

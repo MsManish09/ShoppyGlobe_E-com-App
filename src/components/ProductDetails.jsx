@@ -1,7 +1,11 @@
 import { useParams } from "react-router-dom"
 
+import { IoIosStar } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
 import { useEffect } from "react";
+import ProductCard from "./ProductCard";
+
+
 
 
 function ProductDetails({product,cart, setCart}){
@@ -16,6 +20,9 @@ function ProductDetails({product,cart, setCart}){
     const currentProduct = product.find((p)=>p.id == id)
     console.log(currentProduct)
 
+    // extract similar product -> by category
+    const similarProducts = product.filter((p)=> p.category == currentProduct.category )
+    console.log('similarProducts : ',similarProducts)
 
     // add to cart functionlality
     function HandleClick(e){
@@ -102,7 +109,7 @@ function ProductDetails({product,cart, setCart}){
             {/* Reviews */}
             <section className=" flex flex-col gap-4 border-t-2 border-solid border-gray-300 w-full mt-4 p-4 " >
                 
-                <h2 className=" text-2xl font-semibold underline text-blue-900 " >Ratings & Reviews </h2>
+                <h2 className=" text-2xl font-semibold  bg-blue-700 text-yellow-400 w-fit p-2 rounded-[5px] justify-center items-center flex gap-2 border-2 border-solid border-yellow-400 " >Ratings & Reviews <IoIosStar /> </h2>
 
                 {/* user reviews */}
                 {currentProduct.reviews.map((r)=>{
@@ -110,8 +117,8 @@ function ProductDetails({product,cart, setCart}){
                         <div className=" p-2 bg-gray-200 rounded-[10px] border-2 border-solid border-gray-400 shadow-2xl flex justify-between items-center " >
                             {/* review and rating */}
                             <div className=" flex w-[80%] h-fit justify-center items-center   " >
-                                <div className=" flex justify-center items-center w-[20%] text-[1.2rem] h-full font-semibold  p-2 " >
-                                    <h2>{r.rating}⭐</h2>
+                                <div className=" flex justify-center items-center text-[1.2rem] w-[50px] h-[50px] font-bold border-2 border-solid border-yellow-300 pl-2 pr-2 bg-orange-600 mr-2 rounded-[100%] text-yellow-200  shadow-2xl " >
+                                    <h2 className=" flex justify-center items-center  " >{r.rating} <IoIosStar /> </h2>
                                 </div>
                                 <div className=" flex justify-start items-center w-[80%] h-full text-[1.2rem] font-medium border-l-2 border-solid border-gray-300 p-2  " >
                                     <h3> {r.comment} </h3>
@@ -128,8 +135,17 @@ function ProductDetails({product,cart, setCart}){
 
             </section>
 
-            {/* related products */}
-            <section></section>
+            {/* related products -> by category and brand */}
+            <section className=" border-t-2 border-solid border-gray-300 w-full mt-6 p-4 " >
+                <h2 className=" text-2xl font-semibold  bg-orange-500 text-white w-fit p-2 rounded-[5px] " >Similar Products</h2>
+
+                {/* by category */}
+                <div id='similarProductsCont' className=" max-w-[100%] min-w-[100%] p-2  mt-4 pb-6  flex overflow-x-scroll gap-4 " >
+                    {
+                       similarProducts.map((p)=> <ProductCard product={p} cart = {cart} setCart={setCart}/> ) 
+                    }
+                </div>
+            </section>
         </div>
     )
 }
