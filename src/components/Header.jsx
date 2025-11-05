@@ -2,7 +2,7 @@
 // import icons
 import { CiShoppingCart } from "react-icons/ci";
 import { FaHome } from "react-icons/fa";
-import { AiFillProduct } from "react-icons/ai";
+import { CgProfile } from "react-icons/cg";
 
 // import components
 import Search from "./Search";
@@ -40,13 +40,15 @@ function Header(){
                         </li>
 
                         <li className="navItems" >
-                            <AiFillProduct />
+                            <CgProfile />
                             Profile
                         </li>
-                        
-                        <li className="navItems" >
-                            <CiShoppingCart />
-                            Cart
+
+                        <li >
+                            <Link to='/cart' className="navItems">
+                                <CiShoppingCart />
+                                Cart
+                            </Link>
                         </li>
                     </ul>
                     

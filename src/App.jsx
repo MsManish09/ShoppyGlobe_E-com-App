@@ -12,6 +12,7 @@ import SearchProduct from "./components/SearchProduct";
 import { useEffect, useState } from "react";
 import ProductDetails from "./components/ProductDetails";
 import ProductByCategory from "./components/ProductByCategory";
+import Cart from "./components/Cart";
 
 
 function App(){
@@ -64,6 +65,8 @@ function App(){
         <Route path='/product/:name' element={ <SearchProduct product={product} cart={cart} setCart={setCart} /> } />
         <Route path='/product_details/:id' element= {<ProductDetails product={product} cart={cart} setCart={setCart}/>} />
         <Route path='/category/:category' element= { <ProductByCategory product={product} cart={cart} setCart={setCart} /> } />
+
+        <Route path='/cart' element={ <Cart  cart={cart} setCart={setCart} /> } />
       </Routes>
       
     </div>
