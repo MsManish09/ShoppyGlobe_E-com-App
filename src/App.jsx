@@ -60,7 +60,7 @@ function App(){
     <div className=" flex flex-col justify-center items-center max-w-screen " >
       <Header classname=' sticky top-0 ' />
       <Routes>
-        <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} />} />
+        <Route path='/' element= {<Homebody uniqueCategory={uniqueCategory} product={product} />} />
         <Route path='*' element= {<ErrorPage  />} />
         <Route path='/product/:name' element={ <SearchProduct product={product} cart={cart} setCart={setCart} /> } />
         <Route path='/product_details/:id' element= {<ProductDetails product={product} cart={cart} setCart={setCart}/>} />
