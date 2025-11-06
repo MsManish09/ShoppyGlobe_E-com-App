@@ -5,7 +5,7 @@ function CartModal({ message, onClose }) {
 
 
   return (
-    <div className="fixed inset-0 flex justify-center items-center z-50 bg-[#3b82f6b3] text-blue-600">
+    <div className="fixed inset-0 flex justify-center items-center z-50 bg-[#93c5fdb3] text-blue-600">
       <div className="bg-orange-100  p-8 rounded-[10px] shadow-2xl max-w-sm w-full text-center ">
         <h2 className="text-2xl font-semibold  mb-4">{message}</h2>
 

@@ -1,6 +1,25 @@
 import { Link } from "react-router-dom"
 
-function CartProductsCard({p}){
+function CartProductsCard({p, cart, setCart}){
+
+    function handlePurchase(e){
+        alert(`order for ${p.title} placed...`)
+        setCart(
+            cart.filter((cartProducts)=> cartProducts.id != p.id)
+        )
+    }
+
+    function handleRemoveProduct(){
+        alert(`${p.title} removed from the cart...`)
+
+        // remove item from the cart
+        setCart(
+            cart.filter((cartProducts)=> cartProducts.id != p.id)
+        )
+    }
+
+
+
     return(
         <div className=" bg-gradient-to-br from-orange-200  to-blue-200 flex flex-col justify-center items-center gap-1.5 w-[90%] lg:w-[40%] md:w-[40%] min-h-[220px] p-4 shadow-2xl border-2 border-solid border-white rounded-2xl " >
 
@@ -33,10 +52,10 @@ function CartProductsCard({p}){
             {/* buy now(individual products) and remove buttons */}
             <div className=" w-full flex gap-2 " >
                 {/* remove btn */}
-                <button className=" p-2 bg-red-600 text-white text-[1rem] font-semibold rounded w-[50%] hover:bg-red-800 hover:scale-95 " >Remove</button>
+                <button className=" p-2 bg-red-600 text-white text-[1rem] font-semibold rounded w-[50%] hover:bg-red-800 hover:scale-95 " onClick={handleRemoveProduct} >Remove</button>
 
                 {/* buy now */}
-                <button className=" p-2 bg-blue-600 text-white text-[1rem] font-semibold rounded w-[50%] hover:bg-blue-800 hover:scale-95 " name={p.id}  >Buy Now</button>
+                <button className=" p-2 bg-blue-600 text-white text-[1rem] font-semibold rounded w-[50%] hover:bg-blue-800 hover:scale-95 " name={p.id} onClick={handlePurchase}  >Buy Now</button>
             </div>
 
         </div>

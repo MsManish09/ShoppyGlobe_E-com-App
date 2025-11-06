@@ -44,7 +44,7 @@ function Cart({cart, setCart}){
             <h1 className=" p-2 bg-gradient-to-br from-orange-500 to-blue-600 text-white text-2xl font-semibold rounded-[10px] " >Cart Items</h1>
 
             {/* render cart items */}
-            {cart.map((p)=> <CartProductsCard p={p}/> )}
+            {cart.map((p)=> <CartProductsCard p={p} cart={cart} setCart={setCart} /> )}
 
             {/* total price dispaly and bulk buy section */}
             <div className="  flex flex-col  items-center  w-[90%] lg:w-[40%] md:w-[40%] text-2xl font-bold  border-t-2 border-solid border-gray-300  gap-4 " > 
