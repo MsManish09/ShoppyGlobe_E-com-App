@@ -3,18 +3,22 @@ import Categories from "./Cateogories"
 import Hero from "./Hero"
 import ProductCard from "./ProductCard"
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 
 
 
-function Homebody({uniqueCategory, product}){
+function Homebody(){
+
+    // get products and categories
+    const { items,categories } = useSelector((state) => state.products)
 
     console.log('home body comp')
-    console.log('categories: ', uniqueCategory)
+    // console.log('categories: ', uniqueCategory)
 
-    const beautyProducts = product.filter((p)=> p.category.toLowerCase() == 'beauty')
-    const topRatedProducts = product.filter((p)=>p.rating >= 4)
-    const groceries = product.filter((p)=> p.category.toLowerCase() == 'groceries')
+    const beautyProducts = items.filter((p)=> p.category.toLowerCase() == 'beauty')
+    const topRatedProducts = items.filter((p)=>p.rating >= 4)
+    const groceries = items.filter((p)=> p.category.toLowerCase() == 'groceries')
 
     return(
         <main className=" flex flex-col justify-center items-center gap-4 p-4 max-w-[95%] bg-blue-100 rounded-[10px]  shadow-2xl mt-6 mb-8 " >
@@ -36,7 +40,7 @@ function Homebody({uniqueCategory, product}){
             {/* hero section  */}
                 {/* categories */}
                 <div id='categoriesDisplay' className=" flex items-center w-full max-w-[100%] gap-4 overflow-x-scroll pl-4 pr-4  " >
-                    {uniqueCategory.map((c, index) => { return <Categories c={c} key={index} /> })}
+                    {categories.map((c, index) => { return <Categories c={c} key={index} /> })}
                 </div>
 
                 {/* Hero banner */}
@@ -47,7 +51,7 @@ function Homebody({uniqueCategory, product}){
                 </div>
 
             {/* beauty products section */}
-            <section id='beauty_products' className=" flex flex-col w-full flex-wrap mt-6 p-6 gap-4 bg-gradient-to-br from-blue-300 to-purple-300 rounded-2xl shadow-2xl " >
+            <section id='beauty_products' className=" flex flex-col w-full flex-wrap mt-6 p-6 gap-4 bg-gradient-to-br from-pink-300 to-red-400 rounded-2xl shadow-2xl " >
 
                 <Link to='/category/beauty' >
                     <h2 className=" font-bold text-center text-2xl mb-4 bg-gradient-to-br from-purple-600 to-blue-600 text-white p-3 rounded-2xl w-fit m-auto hover:scale-95 hover:text-violet-300 " >Top rated <span className=" text-pink-300 underline " >beauty</span> products</h2>

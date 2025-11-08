@@ -2,14 +2,19 @@ import { useParams } from "react-router-dom"
 import ProductCard from "./ProductCard"
 import { useEffect } from "react"
 import Categories from "./Cateogories"
+import { useSelector } from "react-redux"
 
 
 
-function ProductByCategory({product, cart, setCart}){
+function ProductByCategory({cart, setCart}){
     
     const {category} = useParams()
     console.log(category)
-    const filteredProducts = product.filter((p)=> p.category == category)
+
+    // get products
+    const { items } = useSelector((state) => state.products)
+    // filter by category
+    const filteredProducts = items.filter((p)=> p.category == category)
     
 
     useEffect(()=>{
@@ -20,7 +25,7 @@ function ProductByCategory({product, cart, setCart}){
         <div className=" flex flex-col p-4 m-10 mt-6 bg-blue-100 rounded-[10px] gap-4 shadow-2xl " >
 
                 <div className=" flex justify-center items-center w-full gap-4 flex-wrap " >
-                    {[...new Set(product.map(p => p.category))].map(category => (
+                    {[...new Set(items.map(p => p.category))].map(category => (
                         <Categories key={category} c={category} />))
                     }
                 </div>

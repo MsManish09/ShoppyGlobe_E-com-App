@@ -2,14 +2,17 @@
 import { useParams } from "react-router-dom"
 import ProductCard from "./ProductCard"
 import Search from "./Search"
+import { useSelector } from "react-redux"
 
-function SearchProduct({product, cart, setCart}){
+function SearchProduct({cart, setCart}){
+
+    const { items,categories } = useSelector((state) => state.products)
 
     const {name} =  useParams()
     console.log('search products page...')
     console.log(name)
 
-    const searchMatchProduct = product.filter((p)=>{
+    const searchMatchProduct = items.filter((p)=>{
         return p.title.toLowerCase().includes(name.toLowerCase()) || p.category.toLowerCase().includes(name.toLowerCase())
     } )
 

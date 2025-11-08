@@ -4,11 +4,12 @@ import { IoIosStar } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
 import { useEffect } from "react";
 import ProductCard from "./ProductCard";
+import { useSelector } from "react-redux";
 
 
 
 
-function ProductDetails({product,cart, setCart}){
+function ProductDetails({cart, setCart}){
 
     let {id} = useParams()
     // console.log(id)
@@ -17,11 +18,13 @@ function ProductDetails({product,cart, setCart}){
     // console.log( parseInt(id) )
     // console.log(id,' : ',typeof id)
 
-    const currentProduct = product.find((p)=>p.id == id)
+    const { items } = useSelector((state) => state.products)
+
+    const currentProduct = items.find((p)=>p.id == id)
     console.log(currentProduct)
 
     // extract similar product -> by category
-    const similarProducts = product.filter((p)=> p.category == currentProduct.category )
+    const similarProducts = items.filter((p)=> p.category == currentProduct.category )
     console.log('similarProducts : ',similarProducts)
 
     // add to cart functionlality
