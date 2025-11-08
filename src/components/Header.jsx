@@ -39,9 +39,11 @@ function Header(){
                             </Link>
                         </li>
 
-                        <li className="navItems" >
+                        <li  >
+                            <Link to='/user_info' className="navItems" >
                             <CgProfile />
                             Profile
+                            </Link>
                         </li>
 
                         <li >

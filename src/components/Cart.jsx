@@ -7,6 +7,7 @@ import CartProductsCard from "./CartProductsCard";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart, clearCart } from "../redux/cart/cartSlice";
 import { updateOrderedItemsList } from "../redux/user/userSlice";
+import LoginModal from "./LoginModal";
 
 function Cart(){
 
@@ -25,6 +26,21 @@ function Cart(){
         console.log(cart)
     },[ cart ] )
 
+    const { isLoggedIn } = useSelector((state) => state.user)
+
+// create modal state
+    const [showLogInModal, setShowLogInModal] = useState(false)
+
+    useEffect(()=>{
+        if(!isLoggedIn){
+            setShowLogInModal(true)
+        }
+
+        else{
+            setShowLogInModal(false)
+        }
+    },[isLoggedIn])
+
     // buy now functionality,
     function handleBuyNow(){
         const items = [...cart]
@@ -39,6 +55,12 @@ function Cart(){
         return(
             <div className=" w-[90vw] h-[80vh] flex justify-center items-center " >
             <div className=" bg-gradient-to-br from-blue-500 via-indigo-300 to-orange-500 rounded-[10px] flex flex-col  p-8 justify-center items-center shadow-2xl flex-wrap text-center  " >
+
+                {/* login modal, if user not loged in yet */}
+                { !isLoggedIn && showLogInModal &&(
+                    <LoginModal  onClose={()=> setShowLogInModal(false)} />
+                )}
+
                 <h1 className=" text-2xl font-semibold text-blue-900 " >The Lonely Cart😔</h1>
                 <h2 className=" italic font-light mb-2 " >Your cart’s feeling a little… empty inside.</h2>
                 <p className=" text-blue-700 text-[1.2rem]  " >Don’t leave it hanging — add some goodies and give it purpose!</p>
