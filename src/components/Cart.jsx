@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import CartModal from "./CartModal";
 import CartProductsCard from "./CartProductsCard";
 
@@ -13,6 +13,8 @@ function Cart(){
 
     const dispatch = useDispatch()
     const cart = useSelector(state => state.cart.items)
+
+    const navigate = useNavigate()
 
 
     const [showModal, setShowModal] = useState(false)
@@ -88,7 +90,7 @@ function Cart(){
 
             </div>
 
-            {/* modal */}
+            {/* cart modal */}
                 {showModal && (
                     <CartModal message={`Order for ${cart.map((p) => p.title).join(', ') } placed`} onClose={()=>{ 
                         setShowModal(false)
@@ -96,7 +98,10 @@ function Cart(){
                         setTimeout(() => {
                             // clear out the cart
                             dispatch(clearCart())
-                        }, 300);
+
+                            // redirect to home page 
+                            navigate('/')
+                        }, 500);
                     }} />
                 )}
 
