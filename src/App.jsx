@@ -15,6 +15,7 @@ import ProductByCategory from "./components/ProductByCategory";
 import Cart from "./components/Cart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./redux/products/productsSlice";
+import UserProfile from "./components/userProfile";
 
 
 function App(){
@@ -53,6 +54,7 @@ function App(){
         <Route path='/category/:category' element= { <ProductByCategory   /> } />
 
         <Route path='/cart' element={ <Cart /> } />
+        <Route path='/user_info' element={ <UserProfile /> } />
       </Routes>
       
     </div>
