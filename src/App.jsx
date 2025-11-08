@@ -33,8 +33,6 @@ function App(){
   }, [status, dispatch]); 
 
   
-  const [cart, setCart] = useState([])
-
   // if (status === 'loading') return <p>Loading...</p>
   // if (status === 'failed') return <p>Error: {error}</p>
 
@@ -50,9 +48,9 @@ function App(){
       <Routes>
         <Route path='/' element= {<Homebody  />} />
         <Route path='*' element= {<ErrorPage  />} />
-        <Route path='/product/:name' element={ <SearchProduct  cart={cart} setCart={setCart} /> } />
-        <Route path='/product_details/:id' element= {<ProductDetails cart={cart} setCart={setCart}/>} />
-        <Route path='/category/:category' element= { <ProductByCategory  cart={cart} setCart={setCart} /> } />
+        <Route path='/product/:name' element={ <SearchProduct   /> } />
+        <Route path='/product_details/:id' element= {<ProductDetails />} />
+        <Route path='/category/:category' element= { <ProductByCategory   /> } />
 
         <Route path='/cart' element={ <Cart /> } />
       </Routes>

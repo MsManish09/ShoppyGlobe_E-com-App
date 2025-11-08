@@ -6,6 +6,7 @@ import CartProductsCard from "./CartProductsCard";
 // dispatch and useSlector import
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart, clearCart } from "../redux/cart/cartSlice";
+import { updateOrderedItemsList } from "../redux/user/userSlice";
 
 function Cart(){
 
@@ -26,7 +27,8 @@ function Cart(){
 
     // buy now functionality,
     function handleBuyNow(){
-
+        const items = [...cart]
+        dispatch(updateOrderedItemsList(items))
         setShowModal(true) 
     }
 

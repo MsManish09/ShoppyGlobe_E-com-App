@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { removeFromCart } from "../redux/cart/cartSlice"
+import { updateOrderedItemsList } from "../redux/user/userSlice"
 
 function CartProductsCard({p}){
 
@@ -11,8 +12,8 @@ function CartProductsCard({p}){
     function handlePurchase(e){
         alert(`order for ${p.title} placed...`)
 
-        //  add item to user info < purchased itmes
-
+        //  add item to user info < purchased itmes 
+        dispatch(updateOrderedItemsList([p]))
         // remove item from the cart
         dispatch(removeFromCart(p.id))
     
