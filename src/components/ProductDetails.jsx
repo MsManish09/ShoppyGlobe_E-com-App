@@ -4,12 +4,16 @@ import { IoIosStar } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
 import { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+
+import { addToCart } from "../redux/cart/cartSlice";
 
 
 
 
-function ProductDetails({cart, setCart}){
+function ProductDetails(){
+
+    const dispatch = useDispatch()
 
     let {id} = useParams()
     // console.log(id)
@@ -29,14 +33,13 @@ function ProductDetails({cart, setCart}){
 
     // add to cart functionlality
     function HandleClick(e){
-        setCart((prev) => [...prev, currentProduct]);
-        // console.log('items in cart', cart)
-        alert('item added to your cart...')
+        alert( `${currentProduct.title} added to your cart...` )
+        dispatch(addToCart(currentProduct))
     }
 
-    useEffect(() => {
-        console.log("Updated cart:", cart);
-    }, [cart]);
+    // useEffect(() => {
+    //     console.log("Updated cart:", cart);
+    // }, [cart]);
 
     return(
         <div className=" flex flex-col justify-center items-center p-4 m-6 bg-gray-100 rounded-[10px] shadow-2xl w-[95%] lg:w-[80vw] md:w-[90vw] flex-wrap " >
@@ -145,7 +148,7 @@ function ProductDetails({cart, setCart}){
                 {/* by category */}
                 <div  className=" max-w-[100%] min-w-[100%] p-2  mt-4 pb-6  flex gap-5 flex-wrap  " >
                         {
-                        similarProducts.map((p)=> <ProductCard product={p} cart = {cart} setCart={setCart}/> ) 
+                        similarProducts.map((p)=> <ProductCard product={p} /> ) 
                         }
                     
                 </div>

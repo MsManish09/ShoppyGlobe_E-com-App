@@ -1,21 +1,28 @@
+import { useDispatch } from "react-redux"
 import { Link } from "react-router-dom"
 
-function CartProductsCard({p, cart, setCart}){
+import { removeFromCart } from "../redux/cart/cartSlice"
 
+function CartProductsCard({p}){
+
+    const dispatch = useDispatch()
+
+    // purchase individual itmes and remove from cart
     function handlePurchase(e){
         alert(`order for ${p.title} placed...`)
-        setCart(
-            cart.filter((cartProducts)=> cartProducts.id != p.id)
-        )
+
+        //  add item to user info < purchased itmes
+
+        // remove item from the cart
+        dispatch(removeFromCart(p.id))
+    
     }
 
     function handleRemoveProduct(){
         alert(`${p.title} removed from the cart...`)
 
         // remove item from the cart
-        setCart(
-            cart.filter((cartProducts)=> cartProducts.id != p.id)
-        )
+        dispatch(removeFromCart(p.id))
     }
 
 

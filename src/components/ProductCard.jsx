@@ -1,20 +1,32 @@
 import { useEffect } from "react";
 import { FaCartPlus } from "react-icons/fa6"
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
+import { addToCart } from "../redux/cart/cartSlice" //add to cart reducer fn
 
-function ProductCard({product, cart, setCart}){
 
+
+function ProductCard({product}){
+
+    const dispatch = useDispatch()
+    // const { addToCart, removeFromCart, clearCart } = useSelector((state)=> state.cart) 
+
+    // add to cart functionality
     function HandleClick(e){
             
-            setCart((prev) => [...prev, product]);
-            // console.log('items in cart', cart)
-            alert('item added to your cart...')
-        }
+        // setCart((prev) => [...prev, product]);
+        // // console.log('items in cart', cart)
+        // alert('item added to your cart...')
+
+        dispatch(addToCart(product)) // dispatch action of to add to cart 
+        alert(`${product.title} add to your cart..`)
+
+    }
     
-        useEffect(() => {
-            console.log("Updated cart:", cart);
-        }, [cart]);
+        // useEffect(() => {
+        //     console.log("product:", product);
+        // }, [product]);
     
     return(
 

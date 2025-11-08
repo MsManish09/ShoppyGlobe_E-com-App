@@ -54,7 +54,7 @@ function App(){
         <Route path='/product_details/:id' element= {<ProductDetails cart={cart} setCart={setCart}/>} />
         <Route path='/category/:category' element= { <ProductByCategory  cart={cart} setCart={setCart} /> } />
 
-        <Route path='/cart' element={ <Cart  cart={cart} setCart={setCart} /> } />
+        <Route path='/cart' element={ <Cart /> } />
       </Routes>
       
     </div>

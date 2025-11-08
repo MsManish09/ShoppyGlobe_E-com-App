@@ -3,7 +3,15 @@ import { Link } from "react-router-dom"
 import CartModal from "./CartModal";
 import CartProductsCard from "./CartProductsCard";
 
-function Cart({cart, setCart}){
+// dispatch and useSlector import
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart, removeFromCart, clearCart } from "../redux/cart/cartSlice";
+
+function Cart(){
+
+    const dispatch = useDispatch()
+    const cart = useSelector(state => state.cart.items)
+
 
     const [showModal, setShowModal] = useState(false)
 
@@ -18,7 +26,8 @@ function Cart({cart, setCart}){
 
     // buy now functionality,
     function handleBuyNow(){
-        setShowModal(true)
+
+        setShowModal(true) 
     }
 
 
@@ -44,7 +53,7 @@ function Cart({cart, setCart}){
             <h1 className=" p-2 bg-gradient-to-br from-orange-500 to-blue-600 text-white text-2xl font-semibold rounded-[10px] " >Cart Items</h1>
 
             {/* render cart items */}
-            {cart.map((p)=> <CartProductsCard p={p} cart={cart} setCart={setCart} /> )}
+            {cart.map((p)=> <CartProductsCard p={p} /> )}
 
             {/* total price dispaly and bulk buy section */}
             <div className="  flex flex-col  items-center  w-[90%] lg:w-[40%] md:w-[40%] text-2xl font-bold  border-t-2 border-solid border-gray-300  gap-4 " > 
@@ -61,7 +70,8 @@ function Cart({cart, setCart}){
                         setShowModal(false)
                         // after modal close -> empty cart items after 1sec
                         setTimeout(() => {
-                            setCart([])
+                            // clear out the cart
+                            dispatch(clearCart())
                         }, 300);
                     }} />
                 )}
