@@ -2,11 +2,12 @@ import { Link, useParams } from "react-router-dom"
 
 import { IoIosStar } from "react-icons/io";
 import { FaCartPlus } from "react-icons/fa6";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 
 import { addToCart } from "../redux/cart/cartSlice";
+import LoginModal from "./LoginModal";
 
 
 
@@ -31,10 +32,23 @@ function ProductDetails(){
     const similarProducts = items.filter((p)=> p.category == currentProduct.category )
     console.log('similarProducts : ',similarProducts)
 
+    const { isLoggedIn } = useSelector((state) => state.user)
+    
+    // create modal state
+    const [showLogInModal, setShowLogInModal] = useState(false)
+
     // add to cart functionlality
     function HandleClick(e){
-        alert( `${currentProduct.title} added to your cart...` )
-        dispatch(addToCart(currentProduct))
+
+        if(!isLoggedIn){
+            setShowLogInModal(true)
+        }
+        
+        else{
+            setShowLogInModal(false)
+            dispatch(addToCart(currentProduct)) // dispatch action of to add to cart 
+            alert( `${currentProduct.title} added to your cart...` )
+        }
     }
 
     // useEffect(() => {
@@ -43,6 +57,12 @@ function ProductDetails(){
 
     return(
         <div className=" flex flex-col justify-center items-center p-4 m-6 bg-gray-100 rounded-[10px] shadow-2xl w-[95%] lg:w-[80vw] md:w-[90vw] flex-wrap " >
+
+            {/* login modal, if user not loged in yet */}
+            { !isLoggedIn && showLogInModal &&(
+                <LoginModal  onClose={()=> setShowLogInModal(false)} /> )
+            }
+
             {/* product details -> img, title, brand etc */}
             <section className=" flex flex-col lg:flex-row md:flex-row w-full " >
 

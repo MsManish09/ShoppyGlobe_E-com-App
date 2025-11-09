@@ -42,6 +42,7 @@ function Cart(){
             setShowLogInModal(false)
         }
     },[isLoggedIn])
+    
 
     // buy now functionality,
     function handleBuyNow(){

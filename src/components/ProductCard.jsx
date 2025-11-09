@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FaCartPlus } from "react-icons/fa6"
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
 import { addToCart } from "../redux/cart/cartSlice" //add to cart reducer fn
+import LoginModal from "./LoginModal";
 
 
 
@@ -12,15 +13,27 @@ function ProductCard({product}){
     const dispatch = useDispatch()
     // const { addToCart, removeFromCart, clearCart } = useSelector((state)=> state.cart) 
 
+    const { isLoggedIn } = useSelector((state) => state.user)
+
+    // create modal state
+    const [showLogInModal, setShowLogInModal] = useState(false)
+
     // add to cart functionality
     function HandleClick(e){
             
         // setCart((prev) => [...prev, product]);
         // // console.log('items in cart', cart)
         // alert('item added to your cart...')
-
-        dispatch(addToCart(product)) // dispatch action of to add to cart 
-        alert(`${product.title} add to your cart..`)
+        
+        if(!isLoggedIn){
+            setShowLogInModal(true)
+        }
+        
+        else{
+            setShowLogInModal(false)
+            dispatch(addToCart(product)) // dispatch action of to add to cart 
+            alert(`${product.title} add to your cart..`)
+        }
 
     }
     
@@ -29,6 +42,12 @@ function ProductCard({product}){
         // }, [product]);
     
     return(
+
+        <>
+        {/* login modal, if user not loged in yet */}
+            { !isLoggedIn && showLogInModal &&(
+                <LoginModal  onClose={()=> setShowLogInModal(false)} /> )
+            }
 
         <Link to={`/product_details/${product.id}`} className="p-4 flex flex-col justify-center items-center border-2 border-solid border-orange-200 bg-orange-50  w-[46%] h-[300px] overflow-hidden flex-wrap lg:w-[22%] md:w-[30%] rounded-[10px] hover:scale-95 hover:border-blue-500 shadow-2xl " >
             <div className=" flex flex-col justify-between h-full w-full " >
@@ -59,6 +78,8 @@ function ProductCard({product}){
                 </button>
             </div>
         </Link>
+        </>
+
     )
 }
 

@@ -17,6 +17,12 @@ function LoginModal({onClose}){
         }
     }, [isLoggedIn, onClose])
 
+    //Prevent background scrolling when modal is open
+    useEffect(() => {
+        document.body.style.overflow = "hidden"
+        return () => (document.body.style.overflow = "auto")
+    }, [])
+
     const [userName, setUserName] = useState('')
     const [userPass, setUserPass] = useState('')
 
@@ -30,6 +36,8 @@ function LoginModal({onClose}){
     }
 
     function handleLogin(e) {
+
+        e.stopPropagation()
         e.preventDefault()
 
         if(!userName || !userPass){
