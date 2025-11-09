@@ -1,4 +1,4 @@
-GitHub link: 
+GitHub link: https://github.com/MsManish09/ShoppyGlobe_E-com-App
 
 # ShoppyGlobe - E-commerce Application
 
@@ -29,6 +29,11 @@ GitHub link:
 
   - **Similar Product Suggestions** — Recommends related products based on categor, encouraging product discovery and cross-selling.
       <img width="1719" height="905" alt="Screenshot 2025-11-09 151219" src="https://github.com/user-attachments/assets/3c36a90d-e15b-4ddd-8f32-cd0719ac6972" />
+
+  - **Browse by Category** — Allows users to explore products filtered by category.
+      - Fetches all products within the selected category dynamically from the API.
+      - Utilizes route-based rendering (e.g., /category/:categoryName) to display filtered results.
+          <img width="1873" height="855" alt="Screenshot 2025-11-09 151916" src="https://github.com/user-attachments/assets/753b2a30-9f33-4d72-905a-76bc9f4a4a2d" />
 
   - **Add to Cart** — Add products to cart with Redux-powered state management.
         <img width="1911" height="906" alt="Screenshot 2025-11-09 150752" src="https://github.com/user-attachments/assets/4515f7c1-893f-4e5b-bb81-61f734198673" />
