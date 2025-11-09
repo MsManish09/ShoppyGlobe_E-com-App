@@ -3,13 +3,13 @@
   The project demonstrates real-world eCommerce functionality — from browsing products to adding them to a cart, logging in, and placing orders — all powered by **state management using Redux**.
 
 - Desktop view:
-    ![Uploading Screenshot 2025-11-09 144711.png…]('desktop screenshot')
+<img width="1902" height="915" alt="Desktop view screenshot" src="https://github.com/user-attachments/assets/a810d03c-6fca-4b8d-98e7-0c80a2724b05" />
 
 - Mobile view:
-    ![Uploading Screenshot 2025-11-09 144752.png…]('mobile view screenShot')
+<img width="276" height="581" alt="mobile view screenshot" src="https://github.com/user-attachments/assets/e6672b04-6f73-4131-bcf4-775b3178b683" />
 
 - Tablet view:
-    ![Uploading Screenshot 2025-11-09 144737.png…]('tablet portrait view')
+  <img width="607" height="802" alt="tablet portrait view screenshot" src="https://github.com/user-attachments/assets/0e09f319-5349-42d4-ba6a-b9430b859af1" />
 
 
 ## Features
