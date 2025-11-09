@@ -1,4 +1,7 @@
+GitHub link: 
+
 # ShoppyGlobe - E-commerce Application
+
   Welcome to **ShoppyGlobe**, a modern and fully responsive eCommerce web app built using **React**, **Redux Toolkit**, and **Tailwind CSS**.  
   The project demonstrates real-world eCommerce functionality — from browsing products to adding them to a cart, logging in, and placing orders — all powered by **state management using Redux**.
 
@@ -16,10 +19,24 @@
 
   ### Functionality
   - **Product Listing** — Fetches product data dynamically from an API.
-  - **Product Details Page** — Displays detailed product info, including price, category, brand, and discount.
+      <img width="1820" height="891" alt="Screenshot 2025-11-09 151008" src="https://github.com/user-attachments/assets/904af33f-62eb-4577-aad3-277f02a41f08" />
+
+  - **Product Details Page** — Displays detailed product info, including price, category, brand, reviews and discount.
+      - Renders product information dynamically based on the product ID in the URL (/product/:id)
+      - Uses React Router’s useParams() to capture the id from the route.
+      - Fetches the relevant product from the Redux store or API on demand.
+      <img width="1920" height="1080" alt="Screenshot 2025-11-09 150710" src="https://github.com/user-attachments/assets/b28fa61b-ff9f-4668-9057-92c7e8ed4ece" />
+
+  - **Similar Product Suggestions** — Recommends related products based on categor, encouraging product discovery and cross-selling.
+      <img width="1719" height="905" alt="Screenshot 2025-11-09 151219" src="https://github.com/user-attachments/assets/3c36a90d-e15b-4ddd-8f32-cd0719ac6972" />
+
   - **Add to Cart** — Add products to cart with Redux-powered state management.
+        <img width="1911" height="906" alt="Screenshot 2025-11-09 150752" src="https://github.com/user-attachments/assets/4515f7c1-893f-4e5b-bb81-61f734198673" />
+
   - **Remove & Buy Items** — Remove individual items or place bulk orders.
   - **Persistent Orders** — Ordered items are tracked in the user’s profile.
+      <img width="1767" height="896" alt="Screenshot 2025-11-09 150825" src="https://github.com/user-attachments/assets/4abefd7c-c93e-48cb-93f1-7bb363652ac5" />
+
   - **Login Flow** — Modal-based login system with dummy credentials.
 
   ### State Management
@@ -56,3 +73,5 @@
   - React Router: https://reactrouter.com/
   - perplexicity AI and chatGPT and other sites :
       - for research
+  - DummyJSON API : https://dummyjson.com/
+    -  for dummy product api's
