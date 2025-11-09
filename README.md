@@ -3,10 +3,14 @@
   The project demonstrates real-world eCommerce functionality — from browsing products to adding them to a cart, logging in, and placing orders — all powered by **state management using Redux**.
 
 - Desktop view:
+    ![Uploading Screenshot 2025-11-09 144711.png…]('desktop screenshot')
 
 - Mobile view:
+    ![Uploading Screenshot 2025-11-09 144752.png…]('mobile view screenShot')
 
 - Tablet view:
+    ![Uploading Screenshot 2025-11-09 144737.png…]('tablet portrait view')
+
 
 ## Features
   - **Product Listing** — Fetches product data dynamically from an API.
