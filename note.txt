@@ -1,0 +1,5 @@
+
+MongoDB Atlas:
+
+    username: shoppyGlobeDB
+    password: U82GAJGjDD5rZjcO
