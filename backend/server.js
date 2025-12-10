@@ -3,15 +3,21 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
-// import productModel
-import productsModel from './models/productsModel.js'
-import axios from 'axios'
+// // import productModel
+// import productsModel from './models/productsModel.js'
+// import axios from 'axios'
+
+import router from './routes/routes.js'
 
 
 // load environment variable
 dotenv.config()
 
 const app = new express()
+
+app.listen(8080, (req, res)=>{
+    console.log('Server is live...')
+})
 
 // connect with mongoDB-Atlas -> shoppyGlobe DB
 mongoose.connect(process.env.MONGODB_URL)
@@ -23,6 +29,9 @@ mongoose.connect(process.env.MONGODB_URL)
     console.log("Collections:", collections.map(c => c.name))
 })
 .catch((err)=> console.log('DB Connnecton error', err))
+
+// json middleware
+app.use(express.json())  // to parse json obj
 
 /* 
     // db connection comformation
@@ -37,9 +46,6 @@ mongoose.connect(process.env.MONGODB_URL)
 
 */
 
-app.listen(8080, (req, res)=>{
-    console.log('Server is live...')
-})
 
 /* 
 
@@ -59,55 +65,9 @@ newUser.save()
   });
   
   */
+ 
+  // GET -> fetch products api
+  app.use('/api/products', router)
 
-  // GET products : fetch from mongoDB,  if mongodb (shoppyGlobe -> products) is empty fetch form dummyAPI and store in shoppyGlobe mongodb
-  app.get("/products", async (req, res) => {
-    try {
-
-      // Check if products already exist in DB
-      const existingCount = await productsModel.countDocuments();
-      if (existingCount > 0) {
-        const products = await productsModel.find()
-        console.log('products exist')
-        console.log(products)
-        return res.json({ products });
-      }
-
-      // If DB empty → fetch from dummy API
-      const apiResponse = await axios.get("https://dummyjson.com/products");
-      const apiProducts = apiResponse.data.products; // array
-
-      // Map API shape -> DB shape
-      const docs = apiProducts.map((p) => ({
-        id: p.id,
-        title: p.title,
-        description: p.description,
-        price: p.price,
-        discountPercentage: p.discountPercentage,
-        rating: p.rating,
-        stock: p.stock,
-        brand: p.brand,
-        category: p.category,
-        thumbnail: p.thumbnail,
-        images: p.images,
-        dimensions: {
-          width: p.dimensions.width,
-          height: p.dimensions.height,
-          depth:  p.dimensions.depth
-        }, 
-        reviews: p.reviews
-      }));
-
-      // Insert many (because collection is empty, duplicates shouldn’t happen)
-      await productsModel.insertMany(docs);
-
-      // Return the saved docs
-      const savedProducts = await productsModel.find().lean();
-      res.status(200).json({ products: savedProducts });
-    } 
-
-    catch (err) {
-      console.error("Error in /products:", err.message);
-      res.status(500).json({ error: "Failed to get products" });
-    }
-});
+  // // GET -> fetch products by id
+  //   app.use('/api/products/:id', router)
