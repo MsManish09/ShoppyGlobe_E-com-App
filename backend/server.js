@@ -3,9 +3,10 @@ import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 
-// // import productModel
 // import productsModel from './models/productsModel.js'
 // import axios from 'axios'
+
+import userModel from './models/userModel.js'
 
 import router from './routes/routes.js'
 
@@ -33,41 +34,9 @@ mongoose.connect(process.env.MONGODB_URL)
 // json middleware
 app.use(express.json())  // to parse json obj
 
-/* 
-    // db connection comformation
-    const db = mongoose.connection
-
-        db.on('open', ()=>{
-            console.log('DB is connnected')
-        })
-        db.on('error', ()=>{
-            console.log('DB connnection failed')
-        })
-
-*/
-
-
-/* 
-
-// add new user using userModel
-import userModel from './models/userModel.js'
-const newUser = userModel({
-  name: 'Manish',
-  age: 25,
-});
-
-newUser.save()
-  .then(result => {
-    console.log('User saved:', result);
-  })
-  .catch(err => {
-    console.error('Error saving user:', err);
-  });
-  
-  */
  
   // GET -> fetch products api
   app.use('/api/products', router)
 
-  // // GET -> fetch products by id
-  //   app.use('/api/products/:id', router)
+  // userdb testing
+
