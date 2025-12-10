@@ -8,7 +8,9 @@ export const fetchProducts = createAsyncThunk(
   'products/fetchProducts',
   async () => {
     // fetch api data
-    const response = await axios.get('https://dummyjson.com/products')
+    const response = await axios.get('http://localhost:8080/products')
+    
+    console.log('redux product slice, products api fetch from atlas: ', response)
 
     // extra products from response
     const products = response.data.products;
