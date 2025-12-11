@@ -30,9 +30,8 @@ const userSchema = new mongoose.Schema({
     email: {type:String, required: true, unique: true },
     password: {type:String, required: true },
     address: {type:String, required: true },
-    cartItems : [ cartSchema ],
-    previousOrders: [ previousOrdersSchema ],
-    
+    cartItems :{type: [cartSchema], default: []},  // cart default should be empty
+    previousOrders: {type: [previousOrdersSchema], default: []} , // defualt should be emtpy array.
 },
 { timestamps: true }
 )

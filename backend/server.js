@@ -9,6 +9,10 @@ import dotenv from 'dotenv'
 import userModel from './models/userModel.js'
 
 import router from './routes/routes.js'
+import registrationRouter from './routes/userRegisterationRoute.js'
+
+import cors from 'cors';
+
 
 
 // load environment variable
@@ -34,9 +38,13 @@ mongoose.connect(process.env.MONGODB_URL)
 // json middleware
 app.use(express.json())  // to parse json obj
 
+// cors middlerware to all requests
+app.use(cors())
+
  
   // GET -> fetch products api
   app.use('/api/products', router)
 
-  // userdb testing
+  // Post -> add new user
+  app.use('/signup', registrationRouter)
 
