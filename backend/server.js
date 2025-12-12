@@ -6,12 +6,15 @@ import dotenv from 'dotenv'
 // import productsModel from './models/productsModel.js'
 // import axios from 'axios'
 
-import userModel from './models/userModel.js'
+// import userModel from './models/userModel.js'
 
 import router from './routes/routes.js'
 import registrationRouter from './routes/userRegisterationRoute.js'
 
-import cors from 'cors';
+import cors from 'cors'
+import loginRouter from './routes/userLoginAuthRouter.js'
+
+import jwt from "jsonwebtoken"
 
 
 
@@ -41,10 +44,33 @@ app.use(express.json())  // to parse json obj
 // cors middlerware to all requests
 app.use(cors())
 
+// authentication verification middleware
+function authentication(req, res, next){
+
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split( ' ') // split JWT and secret
+
+    // verify
+    jwt.verify(token, process.env.JWT_SECRET, (err, user)=>{
+        if(err){
+            return res.status(403).json({message: 'Invalid jwt token'})
+        }
+
+        req.user = user
+
+        // move to next 
+        next()
+
+    })
+}
+
  
   // GET -> fetch products api
   app.use('/api/products', router)
 
   // Post -> add new user
   app.use('/signup', registrationRouter)
+
+  // POST -> user login and authenticaltion
+  app.use('/login', loginRouter)  
 
