@@ -34,7 +34,8 @@ function LoginModal({onClose}){
         setUserPass( e.target.value )
     }
 
-    function handleLogin(e) {
+    // handle login functionality.
+    async function handleLogin(e) {
         e.stopPropagation()
         e.preventDefault()
 
@@ -43,12 +44,46 @@ function LoginModal({onClose}){
             return
         }
 
-        dispatch(setName(userName))
-        dispatch(setPassword(userPass))
-        dispatch(login())
+        // call backend
+        try {
+            
+            // call login api -> post -> username and password
+            const response = await fetch('http://localhost:8080/login', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                // send user email and password for login process.
+                body: JSON.stringify({
+                    email: userName,
+                    password: userPass
+                })
 
-        // send a logged in alert
-        alert(`${userName} logged In...`)
+            })
+
+            // parse the login response
+            const data = await response.json()
+
+            //  if backend sends error
+            if (!response.ok) {
+                alert(data.message)
+                return
+            }
+
+            // if login credietial are correct -> save the JWT TOKEN IN localstorage.
+            localStorage.setItem('token', data.token)
+
+            // save username and change the login state to true to login
+            dispatch(setName(userName))
+            dispatch(login())
+
+            // send a logged in alert
+            alert(`${userName} logged In...`)
+
+        } catch (error) {
+            alert('Somthening went wrong.')
+            console.log(error)
+        }
     }
 
     return(

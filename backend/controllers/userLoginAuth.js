@@ -22,16 +22,21 @@ export const login = async (req, res) => {
 
     //  compare password (bcrypt hashed)
     const isMatch = await bcrypt.compare(password, user.password)
+
+    // if password is wrong -> return incorrect password
     if (!isMatch) {
         console.log('incorrect password')
         return res.status(401).json({ message: "Incorrect password" })
     }
 
+    // else generate token
+
     // create JWT token -> token expires in 30 minutes
     const token = jwt.sign( { id: user._id, email: user.email }, process.env.JWT_SECRET,{ expiresIn: "30m" } )
     console.log('JWT Token: ', token)
 
-    // Send response
+    // Send response when successful
+    console.log(`login successful, user: `, { id: user._id, name: user.name, email: user.email })
     return res.status(200).json({ message: "Login successful", token, user: { id: user._id, name: user.name, email: user.email } })
 
   } catch (error) {
