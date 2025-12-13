@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "./redux/products/productsSlice";
 
 import { lazy, Suspense } from "react";
+import { clearCart, setCartDetailsFromDB } from "./redux/cart/cartSlice";
 
 function App(){
 
@@ -37,6 +38,58 @@ function App(){
       dispatch(fetchProducts()); // fetch
     }
   }, [status, dispatch]); 
+
+  // useEffect ot load cart items for db when ever user logs-In
+  const { isLoggedIn, name } = useSelector(state => state.user)
+
+  useEffect(()=>{
+    async function fetchCartitems(){
+
+      // is user is logged out -> empty cart
+      if(!isLoggedIn){
+        dispatch(clearCart())
+        return
+      }
+
+      // when user is logged in
+      try {
+
+        const token = localStorage.getItem('token')
+
+        const response = await fetch('http://localhost:8080/user', {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`
+          },
+          body: JSON.stringify({email: name }) // name is email
+        })
+
+        console.log('/user by email response, ', response)
+
+        const data = await response.json()
+
+        // if its a bad response
+        if(!response.ok){
+          console.log('failed to fetch user details,', data.message)
+          return
+        }
+        
+        // when is fetched -> update cart state for the api response data
+
+        const cartItems = data.user.cartItems.map(c => c.product)
+
+        console.log('app.jsx, api cart items data', cartItems)
+        dispatch(setCartDetailsFromDB( cartItems ))      
+        
+      } catch (error) {
+        console.log('Error fetching cart itmes, ', error)
+      }
+    }
+
+    // call the fetchcart itmes function
+    fetchCartitems()
+  }, [isLoggedIn]) // run this useEffect every time isLoggedIn is changed.
 
   
   // if (status === 'loading') return <p>Loading...</p>
