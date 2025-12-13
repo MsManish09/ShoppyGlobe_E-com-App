@@ -15,6 +15,7 @@ import cors from 'cors'
 import loginRouter from './routes/userLoginAuthRouter.js'
 
 import jwt from "jsonwebtoken"
+import addToCartRouter from './routes/addToCartRouter.js'
 
 
 
@@ -48,7 +49,7 @@ app.use(cors())
 function authentication(req, res, next){
 
     const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split( ' ') // split JWT and secret
+    const token = authHeader && authHeader.split( ' ')[1] // split JWT and secret
 
     // verify
     jwt.verify(token, process.env.JWT_SECRET, (err, user)=>{
@@ -73,4 +74,8 @@ function authentication(req, res, next){
 
   // POST -> user login and authenticaltion
   app.use('/login', loginRouter)  
+
+  //   POST -> Add items ot cart -> uses authentication middleware.
+  app.use('/cart',authentication, addToCartRouter) 
+
 

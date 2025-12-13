@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 
-import { addToCart } from "../redux/cart/cartSlice";
+import { setCartDetailsFromDB } from "../redux/cart/cartSlice";
 import LoginModal from "./LoginModal";
 
 
@@ -32,28 +32,60 @@ function ProductDetails(){
     const similarProducts = items.filter((p)=> p.category == currentProduct.category )
     console.log('similarProducts : ',similarProducts)
 
-    const { isLoggedIn } = useSelector((state) => state.user)
+    // name is email here
+    const { isLoggedIn, name } = useSelector((state) => state.user)
     
     // create modal state
     const [showLogInModal, setShowLogInModal] = useState(false)
 
     // add to cart functionlality
-    function HandleClick(e){
+    async function HandleClick(e){
 
         if(!isLoggedIn){
             setShowLogInModal(true)
+            return
         }
         
-        else{
-            setShowLogInModal(false)
-            dispatch(addToCart(currentProduct)) // dispatch action of to add to cart 
-            alert( `${currentProduct.title} added to your cart...` )
-        }
-    }
+       try {
 
-    // useEffect(() => {
-    //     console.log("Updated cart:", cart);
-    // }, [cart]);
+        // get token form localStrage
+            const token = localStorage.getItem('token')
+
+            // call api to send itme to cart
+            const response = await fetch('http://localhost:8080/cart', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` // for token Authentication
+                },
+                body: JSON.stringify({
+                    email: name,
+                    product: currentProduct,
+                    quantity: 1
+                })
+            })
+
+            const data = await response.json()
+
+            // if api call failed
+            if(!response.ok){
+                alert(data.message)
+                return
+            }
+
+            // update redux -> from mongoDb cart
+            dispatch(setCartDetailsFromDB(
+                data.user.cartItems.map(c => c.product)
+            ))
+            alert( `${currentProduct.title} added to your cart...` )
+        
+            setShowLogInModal(false)
+        
+       } catch (error) {
+        console.log(err)
+        alert('failed to add to cart')
+       }
+    }
 
     return(
         <div className=" flex flex-col justify-center items-center p-4 m-6 bg-gray-100 rounded-[10px] shadow-2xl w-[95%] lg:w-[80vw] md:w-[90vw] flex-wrap " >

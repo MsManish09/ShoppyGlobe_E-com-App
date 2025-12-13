@@ -8,6 +8,7 @@ const cartSlice = createSlice({
     },
 
     reducers:{
+    /* 
         // add to cart reducer 
         addToCart: (state, action)=>{
             const newItem = action.payload
@@ -22,6 +23,11 @@ const cartSlice = createSlice({
             else{
                 alert(`${newItem.title} already exists...`)
             }
+        },
+    */
+        // get cart details form the DB
+        setCartDetailsFromDB: (state, action)=>{
+            state.items = action.payload
         },
 
         // remove from cart fn
@@ -38,5 +44,5 @@ const cartSlice = createSlice({
 })
 
 
-export const { addToCart, removeFromCart, clearCart } = cartSlice.actions
+export const { setCartDetailsFromDB, removeFromCart, clearCart } = cartSlice.actions
 export default cartSlice.reducer

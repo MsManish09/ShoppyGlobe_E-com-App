@@ -5,7 +5,7 @@ import CartProductsCard from "./CartProductsCard";
 
 // dispatch and useSlector import
 import { useDispatch, useSelector } from "react-redux";
-import { addToCart, removeFromCart, clearCart } from "../redux/cart/cartSlice";
+import { removeFromCart, clearCart } from "../redux/cart/cartSlice";
 import { updateOrderedItemsList } from "../redux/user/userSlice";
 import LoginModal from "./LoginModal";
 
