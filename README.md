@@ -89,9 +89,25 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
   - Returns complete product information including description and pricing.
   - **When fetch produt by id is successful: API Response**
 <img width="1920" height="1080" alt="GET_API_Product_by_ID_successful" src="https://github.com/user-attachments/assets/2c9d44cf-8f6e-487b-be0f-50f68085fe08" />
-  - **When fetch produt by id is unsuccessful: API Response**
+ - **When fetch produt by id is unsuccessful: API Response**
 <img width="1920" height="1080" alt="GET_Product_API_Unsuccessful" src="https://github.com/user-attachments/assets/7f67fb4b-2295-473f-9a6f-3c236b198945" />
 
+### Authentication & Authorization: 
+
+ This project uses **JWT-based authentication** to secure API endpoints.
+ **Description**
+ - Registers a new user
+   <img width="1920" height="1080" alt="POST_signup_successful" src="https://github.com/user-attachments/assets/1680bb40-2123-41c6-ab39-19762218a3b5" />
+
+ - Passwords are securely hashed using **bcrypt**
+ - User details are stored in **MongoDB**
+   <img width="1920" height="1080" alt="new_user_stored_in_MONGODB" src="https://github.com/user-attachments/assets/17ffba84-c373-48c9-a0be-99b530d0d775" />
+
+ - When ever a user logs In, jwt token is generated and stored in LocalStorage to protect api's. The token is required to access protected routes
+  <img width="1920" height="1080" alt="JWT_token_localStorage" src="https://github.com/user-attachments/assets/4df0e06b-ad84-4177-949a-e6a2961dd49a" />
+  - **JWT token** valid for **30 minutes**
+
+### 🔹 User Registration
 
 
 ## Tech Stack
