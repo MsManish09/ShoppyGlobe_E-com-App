@@ -104,10 +104,35 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
    <img width="1920" height="1080" alt="new_user_stored_in_MONGODB" src="https://github.com/user-attachments/assets/17ffba84-c373-48c9-a0be-99b530d0d775" />
 
  - When ever a user logs In, jwt token is generated and stored in LocalStorage to protect api's. The token is required to access protected routes
-  <img width="1920" height="1080" alt="JWT_token_localStorage" src="https://github.com/user-attachments/assets/4df0e06b-ad84-4177-949a-e6a2961dd49a" />
-  - **JWT token** valid for **30 minutes**
+   <img width="1920" height="1080" alt="POST_Login_auth_200_successful" src="https://github.com/user-attachments/assets/ae53cb7f-7616-4e52-889d-829d0ba45026" />
 
-### 🔹 User Registration
+  <img width="1920" height="1080" alt="JWT_token_localStorage" src="https://github.com/user-attachments/assets/4df0e06b-ad84-4177-949a-e6a2961dd49a" />
+ - **JWT token** valid for **30 minutes**
+
+## Cart APIs:
+ - Protected Routes
+ - All cart-related endpoints require a **valid JWT token** (stored in localStorage after logging In).
+ 
+ ### Add Product to Cart -> POST / cart
+  **Description**
+  - Adds a product to the logged-in user’s cart
+  - Cart is stored as part of the user document
+<img width="1920" height="1080" alt="POST_200_AddToCart_successful" src="https://github.com/user-attachments/assets/190d8e72-ea80-49c8-8a27-e7fa054f4f75" />
+<img width="1920" height="1080" alt="POST_200_AddToCart_successful_DB_ScreenShot" src="https://github.com/user-attachments/assets/7aed4db1-a2db-44de-99b7-2e96e770fbc8" />
+
+ ### Delete Product From Cart -> DELETE / delete_From_cart
+  **Description**
+  - Removes a specific product from the user’s cart
+  - Cart items are filtered using `product id`
+  - Updated cart is saved back to **MongoDB**
+    <img width="1920" height="1080" alt="DELETE_200_RemoveItemFromCart_successful" src="https://github.com/user-attachments/assets/1a2b3784-6786-46ef-9d5f-94d8eb460b80" />
+
+ ### Fetch User & Cart Details -> POST /user
+  
+  **Description**
+  - Fetches authenticated user details by their registered email id.
+  - Returns cart items stored in the database
+  - Used to initialize frontend cart state after login
 
 
 ## Tech Stack
