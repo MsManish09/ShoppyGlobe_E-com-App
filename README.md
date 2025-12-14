@@ -77,14 +77,14 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
 -**Secure access to cart APIs using JWT** - Made sure that some routes are secured using authentication middleware, JWT authenctication.
 
 ### Product Fetching: 
- **Fetch all products**
+- **Fetch all products**
   - Retrieves all products from the MongoDB database and store them in redux state, as soon as app loads.
   - Used to display products in the frontend.
   - Returns product details such as title, price, category, brand, and rating.
   - **API Response:**
     <img width="1920" height="1080" alt="GET_API_Product_API_successful" src="https://github.com/user-attachments/assets/67f3b6f9-ba25-4f55-b44c-35f5a9b82969" />
 
-**Fetch product by ID**
+- **Fetch product by ID**
  - Retrieves detailed information of a single product using its unique ID.
  - Returns complete product information including description and pricing.
  - **When fetch produt by id is successful: API Response**
