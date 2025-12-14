@@ -216,6 +216,8 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
      - Open new terminal and navigate to backend folder -> **cd backend**
      - Then install backend dependencies -> **npm install**
      - Then start the server -> **npm start**
+        - Server will run on: **http://localhost:8080**
+
  ## Tech Stack
 
 - **Frontend** - React 18, Vite
@@ -224,6 +226,13 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
 - **Styling** - Tailwind CSS
 - **Icons** - react Icons
 - **Build Tool** - Vite
+
+  **Backend**
+   - **Node JS** - To build backend.
+   - **Express JS** - To build api's.
+   - **MongoDB Atlas** - To store the database.
+   - **JWT** - to create jwt token for authentication and authorization.
+   - **bycrpt** - to hash the user password, for better security.
 
 ## Credits / Acknowledgments:
 
@@ -236,3 +245,7 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
   - for research
 - DummyJSON API : https://dummyjson.com/
   - for dummy product api's
+- Node js: https://nodejs.org/en/
+- Express JS: https://expressjs.com/
+- MongoDB Atlas: https://www.mongodb.com/
+- JWT: https://www.jwt.io/
