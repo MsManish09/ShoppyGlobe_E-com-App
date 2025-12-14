@@ -68,6 +68,7 @@ Welcome to **ShoppyGlobe**, a modern and fully responsive eCommerce web app buil
 
 - **ShoppyGlobe Backend – Node.js & Express API** — Overview
   shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe e-commerce application, built using Node.js, Express.js, MongoDB, and JWT authentication.
+  - MVCR architecture is used to create the backend.
 
 **The backend handles**:
 
