@@ -134,8 +134,89 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
   - Returns cart items stored in the database
   - Used to initialize frontend cart state after login
 
+# Database Design
 
-## Tech Stack
+ The application uses **MongoDB** for data storage (cloud).
+  - Any one can access the Database, from any device
+ 
+ 
+ ### User Collection schema:
+ 
+ ```js
+ {
+    name: {type:String, required: true },
+    email: {type:String, required: true, unique: true },
+    password: {type:String, required: true },
+    address: {type:String, required: true },
+    cartItems :{type: [cartSchema], default: []},  // cart default should be empty
+    previousOrders: {type: [previousOrdersSchema], default: []} , // defualt should be emtpy array.
+ }
+ ```
+ **Description**
+  - Stores user authentication details (email, name, address etc)
+  - password is stored in hashed format
+  - cartItems contains products added by the user
+  - previouslyOrderedItems would stores past order data
+
+### Products Collection: 
+  - Stored in MongoDB Atlas
+  - all the required details of the product is stored.
+  - Products are fetch from dummyAPI and later propulate into mongoDB
+  - Redux product slice user this api to fetch product detials and display in frontend.
+    <img width="1920" height="1080" alt="GET_API_Product_API_successful" src="https://github.com/user-attachments/assets/2e3d9718-e0fa-436e-9d24-ad30546624c9" />
+
+  **Products collection schema**
+  ```js
+  id: {
+        type: Number,
+        required: true,
+        unique: true, // prevents prevent duplication.
+      },
+      title: String,
+      description: String,
+      price: Number,
+      discountPercentage: Number,
+      rating: Number,
+      stock: Number,
+      brand: String,
+      category: String,
+      thumbnail: String,
+      images: [String],
+      dimensions: {
+        width: Number,
+        height: Number,
+        depth: Number
+      },
+      reviews: {
+        type: [reviewsSchema],
+        default: []
+      }
+  ```
+
+## Error Handling & Validation
+ Proper status codes (400, 401, 404, 500)
+ **Validation for:**
+   - Missing request fields
+   - Invalid user
+   - Unauthorized access
+   - Try–catch blocks used in all controllers
+
+ ## API Testing
+  All APIs were tested using Thunder Client:
+  - User Registration
+  - User Login
+  - Product Fetch
+  - Add to Cart
+  - Remove from Cart
+
+ ### How to Run the Project
+  - Install dependencies for both Frontend and backend
+     - open the app.jsx file of the  app and in termainal run **npm install**
+     - Then run **npm run dev** in the terminal.
+     - Open new terminal and navigate to backend folder -> **cd backend**
+     - Then install backend dependencies -> **npm install**
+     - Then start the server -> **npm start**
+ ## Tech Stack
 
 - **Frontend** - React 18, Vite
 - **State Management** - Redux Toolkit
