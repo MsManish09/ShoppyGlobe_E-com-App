@@ -85,11 +85,11 @@ shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe 
     <img width="1920" height="1080" alt="GET_API_Product_API_successful" src="https://github.com/user-attachments/assets/67f3b6f9-ba25-4f55-b44c-35f5a9b82969" />
 
 - **Fetch product by ID**
- - Retrieves detailed information of a single product using its unique ID.
- - Returns complete product information including description and pricing.
- - **When fetch produt by id is successful: API Response**
+  - Retrieves detailed information of a single product using its unique ID.
+  - Returns complete product information including description and pricing.
+  - **When fetch produt by id is successful: API Response**
 <img width="1920" height="1080" alt="GET_API_Product_by_ID_successful" src="https://github.com/user-attachments/assets/2c9d44cf-8f6e-487b-be0f-50f68085fe08" />
-**When fetch produt by id is unsuccessful: API Response**
+  - **When fetch produt by id is unsuccessful: API Response**
 <img width="1920" height="1080" alt="GET_Product_API_Unsuccessful" src="https://github.com/user-attachments/assets/7f67fb4b-2295-473f-9a6f-3c236b198945" />
 
 
