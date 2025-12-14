@@ -17,6 +17,7 @@ import loginRouter from './routes/userLoginAuthRouter.js'
 import jwt from "jsonwebtoken"
 import addToCartRouter from './routes/addToCartRouter.js'
 import { getuserRouter } from './routes/getUserByEmailRouter.js'
+import deleteFromCartRouter from './routes/deleteFromCartRouter.js'
 
 
 
@@ -79,7 +80,10 @@ function authentication(req, res, next){
   //   POST -> Add items ot cart -> uses authentication middleware.
   app.use('/cart',authentication, addToCartRouter) 
 
- // GET -> get user info using email
- app.use('/user',authentication, getuserRouter)  
+  // GET -> get user info using email
+  app.use('/user',authentication, getuserRouter)  
+
+  // DELETE -> delete item from the cart -> authentication middleware
+  app.use('/delete_From_cart', deleteFromCartRouter)
 
 

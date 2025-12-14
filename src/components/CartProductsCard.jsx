@@ -1,7 +1,7 @@
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
-import { removeFromCart } from "../redux/cart/cartSlice"
+import { removeFromCart, setCartDetailsFromDB } from "../redux/cart/cartSlice"
 import { updateOrderedItemsList } from "../redux/user/userSlice"
 
 function CartProductsCard({p}){
@@ -19,11 +19,48 @@ function CartProductsCard({p}){
     
     }
 
-    function handleRemoveProduct(){
-        alert(`${p.title} removed from the cart...`)
+    // backend deleteFromCart intergration
 
-        // remove item from the cart
-        dispatch(removeFromCart(p.id))
+    const {name} = useSelector(state =>state.user)
+
+    async function handleRemoveProduct(){
+
+        try {
+            
+            const token = localStorage.getItem('token')
+
+            const response = await fetch('http://localhost:8080/delete_From_cart', {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`
+                },
+                body: JSON.stringify({ 
+                    email: name,
+                    productId: p.id
+                })
+            })
+
+            // parse response
+            const data = await response.json()
+
+            // if response is not ok
+            if(!response.ok){
+                alert(data.message)
+                return
+            }
+
+            // update redux
+            const updatedCart = data.cartItems.map(item => item.product)
+
+            // dispatch aciton to change cart state
+            dispatch(setCartDetailsFromDB(updatedCart))
+
+            alert(`${p.title} removed from the cart...`)
+
+        } catch (error) {
+            console.log('Failed to remove item for the cart.', error)
+        }
     }
 
 
