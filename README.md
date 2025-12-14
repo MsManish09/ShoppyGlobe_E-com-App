@@ -14,7 +14,7 @@ Welcome to **ShoppyGlobe**, a modern and fully responsive eCommerce web app buil
 - Tablet view:
   <img width="607" height="802" alt="tablet portrait view screenshot" src="https://github.com/user-attachments/assets/0e09f319-5349-42d4-ba6a-b9430b859af1" />
 
-## Features
+## Features - Frontend
 
 ### Functionality
 
@@ -63,6 +63,36 @@ Welcome to **ShoppyGlobe**, a modern and fully responsive eCommerce web app buil
   <img width="758" height="441" alt="Screenshot 2025-11-09 145844" src="https://github.com/user-attachments/assets/129248f7-8096-4263-b99a-eff7262176bb" />
 
 - **Responsive Design** — Works seamlessly across desktop, tablet, and mobile.
+
+## Backend: 
+
+- **ShoppyGlobe Backend – Node.js & Express API** — Overview
+shoppyGlobel / backend repository contains the backend APIs for the ShoppyGlobe e-commerce application, built using Node.js, Express.js, MongoDB, and JWT authentication.
+
+**The backend handles**:
+
+-**Product fetching** - fetching product from api and storing them in the redux product store
+-**User authentication (Register & Login)** - Add new user and store user details in database and authenticate user using JWT authentication
+-**Cart management (Add & Remove items)** - built backend api's  Add and remove items to the cart and update state in redux.
+-**Secure access to cart APIs using JWT** - Made sure that some routes are secured using authentication middleware, JWT authenctication.
+
+### Product Fetching: 
+ **Fetch all products**
+  - Retrieves all products from the MongoDB database and store them in redux state, as soon as app loads.
+  - Used to display products in the frontend.
+  - Returns product details such as title, price, category, brand, and rating.
+  - **API Response:**
+    <img width="1920" height="1080" alt="GET_API_Product_API_successful" src="https://github.com/user-attachments/assets/67f3b6f9-ba25-4f55-b44c-35f5a9b82969" />
+
+**Fetch product by ID**
+ - Retrieves detailed information of a single product using its unique ID.
+ - Returns complete product information including description and pricing.
+ - **When fetch produt by id is successful: API Response**
+<img width="1920" height="1080" alt="GET_API_Product_by_ID_successful" src="https://github.com/user-attachments/assets/2c9d44cf-8f6e-487b-be0f-50f68085fe08" />
+**When fetch produt by id is unsuccessful: API Response**
+<img width="1920" height="1080" alt="GET_Product_API_Unsuccessful" src="https://github.com/user-attachments/assets/7f67fb4b-2295-473f-9a6f-3c236b198945" />
+
+
 
 ## Tech Stack
 
